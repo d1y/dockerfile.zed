@@ -1,0 +1,9 @@
+{
+  "name": "Dockerfile",
+  "version": "0.0.1",
+  "authors": [
+    "d1y <chenhonzho@gmail.com>"
+  ],
+  "description": "Provides Dockerfile syntax highlighting",
+  "repository": "https://github.com/d1y/dockerfile.zed"
+}
