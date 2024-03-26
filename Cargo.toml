@@ -1,0 +1,11 @@
+[package]
+name = "zed_dockerfile"
+version = "0.0.2"
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+zed_extension_api = "0.0.4"

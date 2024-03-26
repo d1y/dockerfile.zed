@@ -1,0 +1,15 @@
+id = "dockerfile"
+name = "Dockerfile"
+description = "Dockerfile support."
+version = "0.0.2"
+schema_version = 1
+authors = ["d1y <chenhonzho@gmail.com>"]
+repository = "https://github.com/d1y/dockerfile.zed"
+
+[language_servers.dockerfile-language-server]
+name = "Dockerfile Language Server"
+language = "Dockerfile"
+
+[grammars.dockerfile]
+repository = "https://github.com/camdencheek/tree-sitter-dockerfile"
+commit = "33e22c33bcdbfc33d42806ee84cfd0b1248cc392"
