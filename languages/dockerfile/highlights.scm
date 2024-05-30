@@ -1,28 +1,29 @@
 ; Dockerfile instructions set taken from:
 ; https://docs.docker.com/engine/reference/builder/#overview
-; https://github.com/helix-editor/helix/blob/78c34194b5c83beb26ca04f12bf9d53fd5aba801/runtime/queries/dockerfile/highlights.scm
+; https://github.com/camdencheek/tree-sitter-dockerfile/blob/main/queries/highlights.scm
 [
-	"ADD"
-	"ARG"
+	"FROM"
+	"AS"
+	"RUN"
 	"CMD"
+	"LABEL"
+	"EXPOSE"
+	"ENV"
+	"ADD"
 	"COPY"
 	"ENTRYPOINT"
-	"ENV"
-	"EXPOSE"
-	"FROM"
-	"HEALTHCHECK"
-	"LABEL"
-	"MAINTAINER"
-	"ONBUILD"
-	"RUN"
-	"SHELL"
-	"STOPSIGNAL"
-	"USER"
 	"VOLUME"
+	"USER"
 	"WORKDIR"
-
-	; "as" for multi-stage builds
-	"AS"
+	"ARG"
+	"ONBUILD"
+	"STOPSIGNAL"
+	"HEALTHCHECK"
+	"SHELL"
+	"MAINTAINER"
+	"CROSS_BUILD"
+	(heredoc_marker)
+	(heredoc_end)
 ] @keyword
 
 [
@@ -32,6 +33,7 @@
 
 (comment) @comment
 
+
 (image_spec
 	(image_tag
 		":" @punctuation.special)
@@ -39,25 +41,19 @@
 		"@" @punctuation.special))
 
 [
-  (double_quoted_string)
-  (single_quoted_string)
-  (json_string)
+	(double_quoted_string)
+	(single_quoted_string)
+	(json_string)
+	(heredoc_line)
 ] @string
 
-[
-  (env_pair)
-  (label_pair)
-] @constant
-
-[
-  (param)
-  (mount_param)
-] @function
-
 (expansion
-    [
-        "$"
-        "{"
-        "}"
-    ] @punctuation.special
-) @constant
+  [
+	"$"
+	"{"
+	"}"
+  ] @punctuation.special
+) @none
+
+((variable) @constant
+ (#match? @constant "^[A-Z][A-Z_0-9]*$"))
